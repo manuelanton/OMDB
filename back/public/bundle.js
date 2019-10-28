@@ -40893,9 +40893,9 @@ __webpack_require__.r(__webpack_exports__);
     className: "row"
   }, movies.map(function (movie) {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-      key: movie.id,
+      key: movie.imdbID,
       className: "col-xs-4"
-    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), console.log(movie.imdbID), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
       src: movie.Poster
     }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       className: "caption"

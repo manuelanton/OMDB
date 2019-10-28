@@ -4,7 +4,9 @@ export default ({ movies }) => (
   <div className="movies">
     <div className="row">
       {movies.map(movie => (
-        <div key={movie.id} className="col-xs-4">
+        <div key={movie.imdbID} className="col-xs-4">
+          <br />
+          {console.log(movie.imdbID)}
           <img src={movie.Poster} />
           <div className="caption">
             <h5>
