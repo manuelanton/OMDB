@@ -40884,14 +40884,12 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/es/index.js");
-
 
 /* harmony default export */ __webpack_exports__["default"] = (function (_ref) {
   var movies = _ref.movies;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "movies"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "movies"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "row"
   }, movies.map(function (movie) {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
