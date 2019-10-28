@@ -1,8 +1,10 @@
 import React from "react";
-import Search from "./Search";
+import SearchContainer from "../containers/SearchContainer";
+import MoviesContainer from "../containers/MoviesContainer";
 
 export default () => (
   <div>
-    <Search />
+    <SearchContainer />
+    <MoviesContainer />
   </div>
 );

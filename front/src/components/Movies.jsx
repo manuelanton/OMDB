@@ -1,21 +1,21 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export default ({ albums }) => (
-  <div className="albums">
-    <h3>Albums</h3>
+export default ({ movies }) => (
+  <div className="movies">
+    <h3>movies</h3>
     <div className="row">
-      {albums.map(album => (
-        <div key={album.id} className="col-xs-4">
-          <Link className="thumbnail" to={`/albums/${album.id}`}>
-            <img src={album.imageUrl} />
-            <div className="caption">
-              <h5>
-                <span>{album.name}</span>
-              </h5>
-              <small>{album.songs.length} songs</small>
-            </div>
-          </Link>
+      {movies.map(movie => (
+        <div key={movie.id} className="col-xs-4">
+          <img src={movie.Poster} />
+          <div className="caption">
+            <h5>
+              <span>Title: {movie.Title}</span>
+              <br />
+              <span>Type: {movie.Type}</span>
+            </h5>
+            <small> Year: {movie.Year}</small>
+          </div>
         </div>
       ))}
     </div>

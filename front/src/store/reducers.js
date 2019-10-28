@@ -12,7 +12,7 @@ export function rootReducer(state = initialState, action) {
       return { ...state, selectedMovie: action.movie };
     }
     case RECEIVE_MOVIES: {
-      return { ...state, movies: action.movies };
+      return { ...state, movies: action.movies.Search };
     }
     default:
       return state;

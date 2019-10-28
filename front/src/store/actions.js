@@ -2,16 +2,22 @@ import axios from "axios";
 
 export const RECEIVE_MOVIES = "RECEIVE_MOVIES";
 export const RECEIVE_MOVIE = "RECEIVE_MOVIE";
-export const RECEIVE_SHOWS = "RECEIVE_SHOWS";
 
-const receiveMovies = movies => {
-  return { type: RECEIVE_MOVIES, movies };
-};
-
-const receiveMovie = movie => {
-  return { type: RECEIVE_MOVIE, movie };
-};
-
-const receiveShows = shows => {
-  return { type: RECEIVE_SHOWS, shows };
-};
+const receiveMovies = movies => ({
+  type: RECEIVE_MOVIES,
+  movies
+});
+const receiveMovie = movie => ({
+  type: RECEIVE_MOVIE,
+  movie
+});
+export const fetchMovies = name => dispatch =>
+  axios
+    .get(`https://www.omdbapi.com/?apikey=20dac387&s=${name}`)
+    .then(res => res.data)
+    .then(movies => dispatch(receiveMovies(movies)));
+export const fetchMovie = name => dispatch =>
+  axios
+    .get(`https://www.omdbapi.com/?apikey=20dac387&t=${name}`)
+    .then(res => res.data)
+    .then(movie => dispatch(receiveMovie(movie)));
