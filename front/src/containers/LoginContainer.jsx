@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import Login from "../components/Form";
-import { fetchUser } from "../store/actions";
+import { receiveUser } from "../store/actions";
 import { connect } from "react-redux";
 
 class LoginContainer extends React.Component {
@@ -28,10 +28,13 @@ class LoginContainer extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     if (this.state.userValue && this.state.passValue) {
-      axios.post("/api/users/login", {
-        username: this.state.userValue,
-        password: this.state.passValue
-      });
+      axios
+        .post("/api/users/login", {
+          username: this.state.userValue,
+          password: this.state.passValue
+        })
+        .then(res => res.data)
+        .then(user => this.props.receiveUser(user));
     }
   }
 
@@ -47,7 +50,7 @@ class LoginContainer extends React.Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  fetchUser: () => dispatch(fetchUser())
+  receiveUser: user => dispatch(receiveUser(user))
 });
 
 export default connect(

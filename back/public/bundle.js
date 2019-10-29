@@ -47532,12 +47532,18 @@ function (_React$Component) {
   }, {
     key: "handleSubmit",
     value: function handleSubmit(event) {
+      var _this2 = this;
+
       event.preventDefault();
 
       if (this.state.userValue && this.state.passValue) {
         axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/api/users/login", {
           username: this.state.userValue,
           password: this.state.passValue
+        }).then(function (res) {
+          return res.data;
+        }).then(function (user) {
+          return _this2.props.receiveUser(user);
         });
       }
     }
@@ -47557,8 +47563,8 @@ function (_React$Component) {
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
-    fetchUser: function fetchUser() {
-      return dispatch(Object(_store_actions__WEBPACK_IMPORTED_MODULE_3__["fetchUser"])());
+    receiveUser: function receiveUser(user) {
+      return dispatch(Object(_store_actions__WEBPACK_IMPORTED_MODULE_3__["receiveUser"])(user));
     }
   };
 };
@@ -47870,7 +47876,7 @@ react_dom__WEBPACK_IMPORTED_MODULE_3___default.a.render(react__WEBPACK_IMPORTED_
 /*!******************************!*\
   !*** ./src/store/actions.js ***!
   \******************************/
-/*! exports provided: RECEIVE_MOVIES, RECEIVE_MOVIE, EMPTY_MOVIES, RECEIVE_USER, emptyMovies, fetchMovies, fetchMovie, fetchUser */
+/*! exports provided: RECEIVE_MOVIES, RECEIVE_MOVIE, EMPTY_MOVIES, RECEIVE_USER, receiveUser, emptyMovies, fetchMovies, fetchMovie, fetchUser */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -47879,6 +47885,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_MOVIE", function() { return RECEIVE_MOVIE; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EMPTY_MOVIES", function() { return EMPTY_MOVIES; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_USER", function() { return RECEIVE_USER; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveUser", function() { return receiveUser; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "emptyMovies", function() { return emptyMovies; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchMovies", function() { return fetchMovies; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchMovie", function() { return fetchMovie; });
@@ -47911,7 +47918,6 @@ var receiveUser = function receiveUser(user) {
     user: user
   };
 };
-
 var emptyMovies = function emptyMovies() {
   return {
     type: EMPTY_MOVIES
@@ -47937,7 +47943,7 @@ var fetchMovie = function fetchMovie(id) {
 };
 var fetchUser = function fetchUser() {
   return function (dispatch) {
-    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/users/me").then(function (res) {
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/me").then(function (res) {
       return res.data;
     }).then(function (user) {
       return dispatch(receiveUser(user));
