@@ -1,14 +1,22 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Search = props => {
   return (
-    <form onSubmit={props.handleSubmit}>
-      <input
-        placeholder="Enter movie or show name"
-        onChange={e => props.handleChange(e)}
-      />
-      <button type="submit">Search</button>
-    </form>
+    <div>
+      <form onSubmit={props.handleSubmit}>
+        <button type="submit">Search</button>
+        <input
+          placeholder="Enter movie or show name"
+          onChange={e => props.handleChange(e)}
+          value={props.inputValue}
+        />
+      </form>
+      <Link to="/">
+        {" "}
+        <button onClick={props.emptyMovies}>HOME</button>
+      </Link>
+    </div>
   );
 };
 

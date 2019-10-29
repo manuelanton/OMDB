@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import { RECEIVE_MOVIE, RECEIVE_MOVIES } from "./actions";
+import { RECEIVE_MOVIE, RECEIVE_MOVIES, EMPTY_MOVIES } from "./actions";
 
 const initialState = {
   selectedMovie: {},
@@ -13,6 +13,9 @@ export function rootReducer(state = initialState, action) {
     }
     case RECEIVE_MOVIES: {
       return { ...state, movies: action.movies.Search };
+    }
+    case EMPTY_MOVIES: {
+      return { ...state, movies: [] };
     }
     default:
       return state;

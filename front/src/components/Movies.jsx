@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default ({ movies }) => (
   <div className="movies">
@@ -6,8 +7,9 @@ export default ({ movies }) => (
       {movies.map(movie => (
         <div key={movie.imdbID} className="col-xs-4">
           <br />
-          {console.log(movie.imdbID)}
-          <img src={movie.Poster} />
+          <Link to={`/movies/${movie.imdbID}`}>
+            <img src={movie.Poster} />
+          </Link>
           <div className="caption">
             <h5>
               <span>Title: {movie.Title}</span>

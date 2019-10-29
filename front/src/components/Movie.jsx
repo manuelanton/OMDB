@@ -1,12 +1,20 @@
 import React from "react";
-import Songs from "./Songs";
 
-export default ({ album, start, currentSong }) => (
-  <div className="album">
-    <div>
-      <h3>{album.name}</h3>
-      <img src={`/api/albums/${album.id}/image`} className="img-thumbnail" />
+export default ({ movie }) => (
+  <div key={movie.imdbID} className="col-xs-4">
+    <br />
+
+    <img src={movie.Poster} />
+
+    <div className="caption">
+      <h5>
+        <span>Title: {movie.Title}</span>
+        <br />
+        <span>Type: {movie.Type}</span>
+        <br />
+        <span>Plot: {movie.Plot}</span>
+      </h5>
+      <small> Year: {movie.Year}</small>
     </div>
-    <Songs songs={album.songs} start={start} currentSong={currentSong} />
   </div>
 );

@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { fetchMovies } from "../store/actions";
+import { fetchMovies, emptyMovies } from "../store/actions";
 import Search from "../components/Search";
 
 class SearchContainer extends React.Component {
@@ -22,9 +22,8 @@ class SearchContainer extends React.Component {
 
   handleSubmit(evt) {
     evt.preventDefault();
-    if (this.state.inputValue) {
-      this.props.fetchMovies(this.state.inputValue);
-    }
+    if (this.state.inputValue) this.props.fetchMovies(this.state.inputValue);
+    this.setState({ inputValue: "" });
   }
 
   render() {
@@ -33,6 +32,8 @@ class SearchContainer extends React.Component {
       <Search
         handleChange={this.handleChange}
         handleSubmit={this.handleSubmit}
+        inputValue={this.state.inputValue}
+        emptyMovies={this.props.emptyMovies}
       />
     );
   }
@@ -43,7 +44,8 @@ const mapStateToProps = ({ movies }) => ({
 });
 
 const mapDispatchStateToProps = dispatch => ({
-  fetchMovies: name => dispatch(fetchMovies(name))
+  fetchMovies: name => dispatch(fetchMovies(name)),
+  emptyMovies: () => dispatch(emptyMovies())
 });
 
 export default connect(
