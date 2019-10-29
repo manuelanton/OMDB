@@ -47810,7 +47810,8 @@ function (_React$Component) {
         handleChange: this.handleChange,
         handleSubmit: this.handleSubmit,
         inputValue: this.state.inputValue,
-        emptyMovies: this.props.emptyMovies
+        emptyMovies: this.props.emptyMovies,
+        user: this.props.user
       });
     }
   }]);
@@ -47819,9 +47820,11 @@ function (_React$Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
 
 var mapStateToProps = function mapStateToProps(_ref) {
-  var movies = _ref.movies;
+  var movies = _ref.movies,
+      user = _ref.user;
   return {
-    movies: movies
+    movies: movies,
+    user: user
   };
 };
 

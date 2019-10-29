@@ -33,13 +33,15 @@ class SearchContainer extends React.Component {
         handleSubmit={this.handleSubmit}
         inputValue={this.state.inputValue}
         emptyMovies={this.props.emptyMovies}
+        user={this.props.user}
       />
     );
   }
 }
 
-const mapStateToProps = ({ movies }) => ({
-  movies: movies
+const mapStateToProps = ({ movies, user }) => ({
+  movies: movies,
+  user
 });
 
 const mapDispatchStateToProps = dispatch => ({
