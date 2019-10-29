@@ -13,10 +13,6 @@ router.post("/register", (req, res) => {
   User.create(req.body).then(user => console.log(user.username));
 });
 
-router.get("/me", (req, res) => {
-  res.send(req.user);
-});
-
 router.post("/login", passport.authenticate("local"), (req, res) => {
   res.send(req.user);
 });

@@ -35,7 +35,7 @@ export const fetchMovie = id => dispatch =>
     .then(movie => dispatch(receiveMovie(movie)));
 export const fetchUser = () => dispatch => {
   axios
-    .get("/api/me")
+    .get("/api/users/me")
     .then(res => res.data)
     .then(user => dispatch(receiveUser(user)));
 };

@@ -1,6 +1,8 @@
 import React from "react";
 import axios from "axios";
 import Login from "../components/Form";
+import { fetchUser } from "../store/actions";
+import { connect } from "react-redux";
 
 class LoginContainer extends React.Component {
   constructor() {
@@ -44,4 +46,11 @@ class LoginContainer extends React.Component {
   }
 }
 
-export default LoginContainer;
+const mapDispatchToProps = dispatch => ({
+  fetchUser: () => dispatch(fetchUser())
+});
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(LoginContainer);
