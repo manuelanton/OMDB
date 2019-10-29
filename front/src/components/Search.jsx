@@ -16,6 +16,9 @@ const Search = props => {
         {" "}
         <button onClick={props.emptyMovies}>HOME</button>
       </Link>
+      <Link to="/users/register">
+        <button>REGISTER</button>
+      </Link>
     </div>
   );
 };

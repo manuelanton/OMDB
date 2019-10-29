@@ -1,4 +1,3 @@
-import { combineReducers } from "redux";
 import { RECEIVE_MOVIE, RECEIVE_MOVIES, EMPTY_MOVIES } from "./actions";
 
 const initialState = {

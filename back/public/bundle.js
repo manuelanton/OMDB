@@ -47278,6 +47278,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_route_hook__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react_route_hook__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var _store_actions__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../store/actions */ "./src/store/actions.js");
 /* harmony import */ var _store_index__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../store/index */ "./src/store/index.js");
+/* harmony import */ var _containers_RegisterContainer__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../containers/RegisterContainer */ "./src/containers/RegisterContainer.jsx");
+
 
 
 
@@ -47297,6 +47299,9 @@ var onMovieEnter = function onMovieEnter(_ref) {
     path: "/movies/:movieID",
     component: _containers_MovieContainer__WEBPACK_IMPORTED_MODULE_4__["default"],
     onEnter: onMovieEnter
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Route"], {
+    path: "/users/register",
+    component: _containers_RegisterContainer__WEBPACK_IMPORTED_MODULE_8__["default"]
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_3__["Route"], {
     exact: true,
     path: "/",
@@ -47352,7 +47357,7 @@ __webpack_require__.r(__webpack_exports__);
     className: "movies"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "row"
-  }, movies.map(function (movie) {
+  }, movies && movies.map(function (movie) {
     return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
       key: movie.imdbID,
       className: "col-xs-4"
@@ -47365,6 +47370,39 @@ __webpack_require__.r(__webpack_exports__);
     }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Title: ", movie.Title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Type: ", movie.Type)), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("small", null, " Year: ", movie.Year)));
   })));
 });
+
+/***/ }),
+
+/***/ "./src/components/Register.jsx":
+/*!*************************************!*\
+  !*** ./src/components/Register.jsx ***!
+  \*************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var Register = function Register(props) {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+    onSubmit: props.handleSubmit
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Username: "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "text",
+    onChange: function onChange(e) {
+      return props.handleUserInput(e);
+    }
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Password: "), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    type: "password",
+    onChange: function onChange(e) {
+      return props.handlePassInput(e);
+    }
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "REGISTER"));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Register);
 
 /***/ }),
 
@@ -47398,7 +47436,9 @@ var Search = function Search(props) {
     to: "/"
   }, " ", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     onClick: props.emptyMovies
-  }, "HOME")));
+  }, "HOME")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: "/users/register"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "REGISTER")));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Search);
@@ -47458,6 +47498,107 @@ var mapStateToProps = function mapStateToProps(_ref) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mapStateToProps)(_components_Movies__WEBPACK_IMPORTED_MODULE_2__["default"]));
+
+/***/ }),
+
+/***/ "./src/containers/RegisterContainer.jsx":
+/*!**********************************************!*\
+  !*** ./src/containers/RegisterContainer.jsx ***!
+  \**********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _components_Register__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/Register */ "./src/components/Register.jsx");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+
+var RegisterContainer =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(RegisterContainer, _React$Component);
+
+  function RegisterContainer() {
+    var _this;
+
+    _classCallCheck(this, RegisterContainer);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(RegisterContainer).call(this));
+    _this.state = {
+      userValue: "",
+      passValue: ""
+    };
+    _this.handleUserInput = _this.handleUserInput.bind(_assertThisInitialized(_this));
+    _this.handlePassInput = _this.handlePassInput.bind(_assertThisInitialized(_this));
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(RegisterContainer, [{
+    key: "handleUserInput",
+    value: function handleUserInput(evt) {
+      this.setState({
+        userValue: evt.target.value
+      });
+    }
+  }, {
+    key: "handlePassInput",
+    value: function handlePassInput(evt) {
+      this.setState({
+        passValue: evt.target.value
+      });
+    }
+  }, {
+    key: "handleSubmit",
+    value: function handleSubmit(event) {
+      event.preventDefault();
+
+      if (this.state.userValue && this.state.passValue) {
+        axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/users/register", {
+          username: this.state.userValue,
+          password: this.state.passValue
+        });
+      }
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Register__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        handlePassInput: this.handlePassInput,
+        handleSubmit: this.handleSubmit,
+        handleUserInput: this.handleUserInput
+      });
+    }
+  }]);
+
+  return RegisterContainer;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (RegisterContainer);
 
 /***/ }),
 
@@ -47699,14 +47840,12 @@ var composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || redux__WEB
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "rootReducer", function() { return rootReducer; });
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/index.js");
-/* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./actions */ "./src/store/actions.js");
+/* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./actions */ "./src/store/actions.js");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 
 
 var initialState = {
@@ -47718,21 +47857,21 @@ function rootReducer() {
   var action = arguments.length > 1 ? arguments[1] : undefined;
 
   switch (action.type) {
-    case _actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_MOVIE"]:
+    case _actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_MOVIE"]:
       {
         return _objectSpread({}, state, {
           selectedMovie: action.movie
         });
       }
 
-    case _actions__WEBPACK_IMPORTED_MODULE_1__["RECEIVE_MOVIES"]:
+    case _actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_MOVIES"]:
       {
         return _objectSpread({}, state, {
           movies: action.movies.Search
         });
       }
 
-    case _actions__WEBPACK_IMPORTED_MODULE_1__["EMPTY_MOVIES"]:
+    case _actions__WEBPACK_IMPORTED_MODULE_0__["EMPTY_MOVIES"]:
       {
         return _objectSpread({}, state, {
           movies: []
