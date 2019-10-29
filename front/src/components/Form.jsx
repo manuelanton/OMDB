@@ -6,7 +6,7 @@ const Register = props => (
     <input type="text" onChange={e => props.handleUserInput(e)} />
     <label>Password: </label>
     <input type="password" onChange={e => props.handlePassInput(e)} />
-    <button>REGISTER</button>
+    <button>SUBMIT</button>
   </form>
 );
 

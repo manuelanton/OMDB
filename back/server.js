@@ -16,10 +16,10 @@ app.use(cookieParser());
 app.use(
   session({ secret: "cualquierCosa", resave: true, saveUninitialized: true })
 );
-app.use("/", router);
+app.use("/api", router);
 
-app.get("/", (req, res) => {
-  res.sendFile(app.get("./public/index"));
+app.get("/*", (req, res) => {
+  res.sendFile(__dirname + "/public/index.html");
 });
 
 db.sync().then(() => {

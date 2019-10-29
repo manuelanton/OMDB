@@ -1,8 +1,14 @@
-import { RECEIVE_MOVIE, RECEIVE_MOVIES, EMPTY_MOVIES } from "./actions";
+import {
+  RECEIVE_MOVIE,
+  RECEIVE_MOVIES,
+  EMPTY_MOVIES,
+  RECEIVE_USER
+} from "./actions";
 
 const initialState = {
   selectedMovie: {},
-  movies: []
+  movies: [],
+  user: {}
 };
 
 export function rootReducer(state = initialState, action) {
@@ -15,6 +21,9 @@ export function rootReducer(state = initialState, action) {
     }
     case EMPTY_MOVIES: {
       return { ...state, movies: [] };
+    }
+    case RECEIVE_USER: {
+      return { ...state, user: action.user };
     }
     default:
       return state;

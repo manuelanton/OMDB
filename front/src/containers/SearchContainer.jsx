@@ -27,7 +27,6 @@ class SearchContainer extends React.Component {
   }
 
   render() {
-    console.log(this.props);
     return (
       <Search
         handleChange={this.handleChange}

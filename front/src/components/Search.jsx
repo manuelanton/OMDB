@@ -19,6 +19,9 @@ const Search = props => {
       <Link to="/users/register">
         <button>REGISTER</button>
       </Link>
+      <Link to="/users/login">
+        <button>LOGIN</button>
+      </Link>
     </div>
   );
 };

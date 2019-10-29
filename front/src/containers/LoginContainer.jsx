@@ -1,8 +1,8 @@
 import React from "react";
 import axios from "axios";
-import Register from "../components/Form";
+import Login from "../components/Form";
 
-class RegisterContainer extends React.Component {
+class LoginContainer extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -26,7 +26,7 @@ class RegisterContainer extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     if (this.state.userValue && this.state.passValue) {
-      axios.post("/api/users/register", {
+      axios.post("/api/users/login", {
         username: this.state.userValue,
         password: this.state.passValue
       });
@@ -35,7 +35,7 @@ class RegisterContainer extends React.Component {
 
   render() {
     return (
-      <Register
+      <Login
         handlePassInput={this.handlePassInput}
         handleSubmit={this.handleSubmit}
         handleUserInput={this.handleUserInput}
@@ -44,4 +44,4 @@ class RegisterContainer extends React.Component {
   }
 }
 
-export default RegisterContainer;
+export default LoginContainer;

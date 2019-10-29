@@ -7,6 +7,7 @@ import RouteHook from "react-route-hook";
 import { fetchMovie } from "../store/actions";
 import store from "../store/index";
 import RegisterContainer from "../containers/RegisterContainer";
+import LoginContainer from "../containers/LoginContainer";
 
 const onMovieEnter = ({ match }) =>
   store.dispatch(fetchMovie(match.params.movieID));
@@ -20,7 +21,8 @@ export default () => (
         component={MovieContainer}
         onEnter={onMovieEnter}
       />
-      <Route path="/users/register" component={RegisterContainer} />
+      <Route exact path="/users/register" component={RegisterContainer} />
+      <Route exact path="/users/login" component={LoginContainer} />
       <Route exact path="/" component={MoviesContainer} />
     </Switch>
   </div>
