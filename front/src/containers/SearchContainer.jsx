@@ -1,7 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
-import { fetchMovies, emptyMovies } from "../store/actions";
+import { fetchMovies, emptyMovies, emptyUser } from "../store/actions";
 import Search from "../components/Search";
+import axios from "axios";
 
 class SearchContainer extends React.Component {
   constructor(props) {
@@ -11,6 +12,7 @@ class SearchContainer extends React.Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleLogout = this.handleLogout.bind(this);
   }
 
   handleChange(evt) {
@@ -26,11 +28,19 @@ class SearchContainer extends React.Component {
     this.setState({ inputValue: "" });
   }
 
+  handleLogout() {
+    axios
+      .get("/api/users/logout")
+      .then(res => res.data)
+      .then(() => this.props.emptyUser());
+  }
+
   render() {
     return (
       <Search
         handleChange={this.handleChange}
         handleSubmit={this.handleSubmit}
+        handleLogout={this.handleLogout}
         inputValue={this.state.inputValue}
         emptyMovies={this.props.emptyMovies}
         user={this.props.user}
@@ -46,7 +56,8 @@ const mapStateToProps = ({ movies, user }) => ({
 
 const mapDispatchStateToProps = dispatch => ({
   fetchMovies: name => dispatch(fetchMovies(name)),
-  emptyMovies: () => dispatch(emptyMovies())
+  emptyMovies: () => dispatch(emptyMovies()),
+  emptyUser: () => dispatch(emptyUser())
 });
 
 export default connect(

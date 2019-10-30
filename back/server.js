@@ -16,8 +16,8 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(cookieParser());
-app.use("/api", router);
 
+app.use("/api", router);
 app.get("/*", (req, res) => {
   res.sendFile(__dirname + "/public/index.html");
 });

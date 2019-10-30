@@ -16,7 +16,10 @@ const Search = props => {
         <button onClick={props.emptyMovies}>HOME</button>
       </Link>
       {props.user.username ? (
-        <p>Hello {props.user.username}!</p>
+        <div>
+          <p>Hello {props.user.username}!</p>
+          <button onClick={props.handleLogout}>LOGOUT</button>
+        </div>
       ) : (
         <div>
           <Link to="/users/register">

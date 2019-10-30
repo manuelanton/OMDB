@@ -5,6 +5,7 @@ const router = require("express").Router();
 
 router.use("/users", require("./users"));
 router.use("/me", require("./me"));
+router.use("/favs", require("./favs"));
 
 // Make sure this is after all of
 // the registered routes!
