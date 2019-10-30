@@ -47786,6 +47786,7 @@ function (_React$Component) {
           username: this.state.userValue,
           password: this.state.passValue
         });
+        this.props.history.push("/users/login");
       }
     }
   }, {
