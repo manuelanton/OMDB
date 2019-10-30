@@ -15,7 +15,7 @@ router.post("/", (req, res) => {
 
 router.get("/", (req, res) => {
   Favorite.findAll({ where: { userId: req.user.id } }).then(favs =>
-    console.log(favs).then(res.send("OK"))
+    res.send(favs)
   );
 });
 

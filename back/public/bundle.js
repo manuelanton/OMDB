@@ -47975,7 +47975,7 @@ react_dom__WEBPACK_IMPORTED_MODULE_3___default.a.render(react__WEBPACK_IMPORTED_
 /*!******************************!*\
   !*** ./src/store/actions.js ***!
   \******************************/
-/*! exports provided: RECEIVE_MOVIES, RECEIVE_MOVIE, EMPTY_MOVIES, RECEIVE_USER, EMPTY_USER, receiveUser, emptyMovies, emptyUser, fetchMovies, fetchMovie, fetchUser */
+/*! exports provided: RECEIVE_MOVIES, RECEIVE_MOVIE, EMPTY_MOVIES, RECEIVE_USER, EMPTY_USER, RECEIVE_FAVS, receiveUser, receiveFavs, emptyMovies, emptyUser, fetchMovies, fetchMovie, fetchUser, fetchFavs */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -47985,12 +47985,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EMPTY_MOVIES", function() { return EMPTY_MOVIES; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_USER", function() { return RECEIVE_USER; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EMPTY_USER", function() { return EMPTY_USER; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_FAVS", function() { return RECEIVE_FAVS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveUser", function() { return receiveUser; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveFavs", function() { return receiveFavs; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "emptyMovies", function() { return emptyMovies; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "emptyUser", function() { return emptyUser; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchMovies", function() { return fetchMovies; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchMovie", function() { return fetchMovie; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchUser", function() { return fetchUser; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchFavs", function() { return fetchFavs; });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 
@@ -47999,6 +48002,7 @@ var RECEIVE_MOVIE = "RECEIVE_MOVIE";
 var EMPTY_MOVIES = "EMPTY_MOVIES";
 var RECEIVE_USER = "RECEIVE_USER";
 var EMPTY_USER = "EMPTY_USER";
+var RECEIVE_FAVS = "RECEIVE_FAVS";
 
 var receiveMovies = function receiveMovies(movies) {
   return {
@@ -48018,6 +48022,12 @@ var receiveUser = function receiveUser(user) {
   return {
     type: RECEIVE_USER,
     user: user
+  };
+};
+var receiveFavs = function receiveFavs(favs) {
+  return {
+    type: RECEIVE_FAVS,
+    favs: favs
   };
 };
 var emptyMovies = function emptyMovies() {
@@ -48054,6 +48064,15 @@ var fetchUser = function fetchUser() {
       return res.data;
     }).then(function (user) {
       return dispatch(receiveUser(user));
+    });
+  };
+};
+var fetchFavs = function fetchFavs(userID) {
+  return function (dispatch) {
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/favs").then(function (res) {
+      return res.data;
+    }).then(function (favs) {
+      return dispatch(receiveFavs(favs));
     });
   };
 };
@@ -48104,6 +48123,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 var initialState = {
   selectedMovie: {},
   movies: [],
+  favs: [],
   user: {}
 };
 function rootReducer() {
@@ -48143,6 +48163,13 @@ function rootReducer() {
       {
         return _objectSpread({}, state, {
           user: {}
+        });
+      }
+
+    case _actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_FAVS"]:
+      {
+        return _objectSpread({}, state, {
+          favs: action.favs
         });
       }
 
