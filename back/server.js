@@ -10,12 +10,12 @@ const router = require("./routes/index");
 app.use(express.static("public"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(passport.initialize());
-app.use(passport.session());
-app.use(cookieParser());
 app.use(
   session({ secret: "cualquierCosa", resave: true, saveUninitialized: true })
 );
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(cookieParser());
 app.use("/api", router);
 
 app.get("/*", (req, res) => {

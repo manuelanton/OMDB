@@ -13,15 +13,20 @@ const Search = props => {
         />
       </form>
       <Link to="/">
-        {" "}
         <button onClick={props.emptyMovies}>HOME</button>
       </Link>
-      <Link to="/users/register">
-        <button>REGISTER</button>
-      </Link>
-      <Link to="/users/login">
-        <button>LOGIN</button>
-      </Link>
+      {props.user.username ? (
+        <p>Hello {props.user.username}!</p>
+      ) : (
+        <div>
+          <Link to="/users/register">
+            <button>REGISTER</button>
+          </Link>
+          <Link to="/users/login">
+            <button>LOGIN</button>
+          </Link>
+        </div>
+      )}
     </div>
   );
 };

@@ -9,9 +9,6 @@ User.init(
       type: S.STRING,
       allowNull: false
     },
-    favorites: {
-      type: S.ARRAY(S.TEXT)
-    },
     password: {
       type: S.STRING,
       allowNull: false
