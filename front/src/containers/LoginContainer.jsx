@@ -34,7 +34,10 @@ class LoginContainer extends React.Component {
           password: this.state.passValue
         })
         .then(res => res.data)
-        .then(user => this.props.receiveUser(user));
+        .then(user => {
+          this.props.receiveUser(user);
+          this.props.history.push("/");
+        });
     }
   }
 

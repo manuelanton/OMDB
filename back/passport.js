@@ -1,9 +1,14 @@
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const User = require("./models/User");
+const Favorite = require("./models/Favorite");
+
 passport.use(
   new LocalStrategy(function(username, password, done) {
-    User.findOne({ where: { username: username } })
+    User.findOne({
+      where: { username: username },
+      include: { model: Favorite, as: "favorite" }
+    })
       .then(user => {
         if (!user) {
           return done(null, false, { message: "Incorrect username." });

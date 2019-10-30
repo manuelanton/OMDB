@@ -43,7 +43,7 @@ User.prototype.validatePassword = function(password) {
 };
 
 User.prototype.addToFavs = function(movie) {
-  return Favorite.create(movie).then(fav => this.setFavorite(fav));
+  return Favorite.create(movie).then(fav => this.addFavorite(fav));
 };
 
 User.hasMany(Favorite, { as: "favorite" });

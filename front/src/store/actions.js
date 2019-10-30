@@ -5,7 +5,6 @@ export const RECEIVE_MOVIE = "RECEIVE_MOVIE";
 export const EMPTY_MOVIES = "EMPTY_MOVIES";
 export const RECEIVE_USER = "RECEIVE_USER";
 export const EMPTY_USER = "EMPTY_USER";
-export const RECEIVE_FAVS = "RECEIVE_FAVS";
 
 const receiveMovies = movies => ({
   type: RECEIVE_MOVIES,
@@ -19,11 +18,6 @@ const receiveMovie = movie => ({
 export const receiveUser = user => ({
   type: RECEIVE_USER,
   user
-});
-
-export const receiveFavs = favs => ({
-  type: RECEIVE_FAVS,
-  favs
 });
 
 export const emptyMovies = () => {
@@ -49,10 +43,4 @@ export const fetchUser = () => dispatch => {
     .get("/api/me")
     .then(res => res.data)
     .then(user => dispatch(receiveUser(user)));
-};
-export const fetchFavs = userID => dispatch => {
-  axios
-    .get("/api/favs")
-    .then(res => res.data)
-    .then(favs => dispatch(receiveFavs(favs)));
 };

@@ -9,9 +9,16 @@ router.post("/", (req, res) => {
     .then(user => {
       user.addToFavs(req.body.movie);
     })
+    .then(fav => res.send(fav))
     .catch(err => console.log(err));
 });
 
-router.get("/", (req, res) => {});
+router.get("/", (req, res) => {
+  Favorite.findAll({ where: { userId: req.user.id } }).then(favs =>
+    console.log(favs).then(res.send("OK"))
+  );
+});
 
 module.exports = router;
+
+//

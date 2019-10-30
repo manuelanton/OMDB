@@ -8,7 +8,7 @@ import { fetchMovie } from "../store/actions";
 import store from "../store/index";
 import RegisterContainer from "../containers/RegisterContainer";
 import LoginContainer from "../containers/LoginContainer";
-import { fetchUser } from "../store/actions";
+import { fetchUser, fetchFavs } from "../store/actions";
 import { connect } from "react-redux";
 
 class App extends React.Component {
@@ -20,6 +20,8 @@ class App extends React.Component {
   }
   componentDidMount() {
     store.dispatch(fetchUser());
+    this.props.user.username && store.dispatch(fetchFavs());
+    console.log("Holis, me monté");
   }
 
   render() {
@@ -41,8 +43,9 @@ class App extends React.Component {
   }
 }
 
-const mapStateToProps = ({ user }) => ({
-  user
+const mapStateToProps = ({ user, favs }) => ({
+  user,
+  favs
 });
 
 export default connect(mapStateToProps)(App);

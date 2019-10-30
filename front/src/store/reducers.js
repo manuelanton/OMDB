@@ -9,7 +9,6 @@ import {
 const initialState = {
   selectedMovie: {},
   movies: [],
-  favs: [],
   user: {}
 };
 
