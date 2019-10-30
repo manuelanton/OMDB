@@ -30,7 +30,7 @@ class SearchContainer extends React.Component {
 
   handleLogout() {
     axios
-      .get("/api/users/logout")
+      .get("/api/auth/logout")
       .then(res => res.data)
       .then(() => this.props.emptyUser());
   }

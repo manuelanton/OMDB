@@ -29,7 +29,7 @@ class LoginContainer extends React.Component {
     event.preventDefault();
     if (this.state.userValue && this.state.passValue) {
       axios
-        .post("/api/users/login", {
+        .post("/api/auth/login", {
           username: this.state.userValue,
           password: this.state.passValue
         })

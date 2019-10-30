@@ -47605,7 +47605,7 @@ function (_React$Component) {
       event.preventDefault();
 
       if (this.state.userValue && this.state.passValue) {
-        axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/api/users/login", {
+        axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/api/auth/login", {
           username: this.state.userValue,
           password: this.state.passValue
         }).then(function (res) {
@@ -47774,7 +47774,7 @@ function (_React$Component) {
       event.preventDefault();
 
       if (this.state.userValue && this.state.passValue) {
-        axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/api/users/register", {
+        axios__WEBPACK_IMPORTED_MODULE_1___default.a.post("/api/auth/register", {
           username: this.state.userValue,
           password: this.state.passValue
         });
@@ -47880,7 +47880,7 @@ function (_React$Component) {
     value: function handleLogout() {
       var _this2 = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_4___default.a.get("/api/users/logout").then(function (res) {
+      axios__WEBPACK_IMPORTED_MODULE_4___default.a.get("/api/auth/logout").then(function (res) {
         return res.data;
       }).then(function () {
         return _this2.props.emptyUser();

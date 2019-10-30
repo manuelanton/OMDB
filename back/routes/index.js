@@ -3,7 +3,7 @@
 
 const router = require("express").Router();
 
-router.use("/users", require("./users"));
+router.use("/auth", require("./auth"));
 router.use("/me", require("./me"));
 router.use("/favs", require("./favs"));
 

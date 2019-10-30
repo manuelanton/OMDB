@@ -26,7 +26,7 @@ class RegisterContainer extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     if (this.state.userValue && this.state.passValue) {
-      axios.post("/api/users/register", {
+      axios.post("/api/auth/register", {
         username: this.state.userValue,
         password: this.state.passValue
       });
