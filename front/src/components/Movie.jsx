@@ -1,6 +1,6 @@
 import React from "react";
 
-export default ({ movie, handleClick }) => (
+export default ({ movie, handleClick, checkFavs }) => (
   <div key={movie.imdbID} className="col-xs-4">
     <br />
 
@@ -16,7 +16,11 @@ export default ({ movie, handleClick }) => (
         <span> Year: {movie.Year}</span>
         <br />
         <br />
-        <button onClick={() => handleClick(movie)}>ADD TO FAVORITES</button>
+        {checkFavs(movie) ? (
+          <button>REMOVE FROM FAVORITES</button>
+        ) : (
+          <button onClick={() => handleClick(movie)}>ADD TO FAVORITES</button>
+        )}
       </h5>
     </div>
   </div>

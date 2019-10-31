@@ -47436,7 +47436,8 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = (function (_ref) {
   var movie = _ref.movie,
-      handleClick = _ref.handleClick;
+      handleClick = _ref.handleClick,
+      checkFavs = _ref.checkFavs;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     key: movie.imdbID,
     className: "col-xs-4"
@@ -47444,7 +47445,7 @@ __webpack_require__.r(__webpack_exports__);
     src: movie.Poster
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "caption"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Title: ", movie.Title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Type: ", movie.Type), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Plot: ", movie.Plot), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, " Year: ", movie.Year), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Title: ", movie.Title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Type: ", movie.Type), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Plot: ", movie.Plot), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, " Year: ", movie.Year), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), checkFavs(movie) ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "REMOVE FROM FAVORITES") : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     onClick: function onClick() {
       return handleClick(movie);
     }
@@ -47509,21 +47510,21 @@ var Search = function Search(props) {
     to: "/"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     onClick: props.emptyMovies
-  }, "HOME")), props.user.username ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Hello ", props.user.username, "!"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+  }, "HOME")), props.user.username ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Hello ", props.user.username, "!"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: "/favorites"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "FAVORITES")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    onClick: props.handleLogout
+  }, "LOGOUT"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
     onSubmit: props.handleSubmit
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     type: "submit"
-  }, "Search"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+  }, "SEARCH"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     placeholder: "Enter movie or show name",
     onChange: function onChange(e) {
       return props.handleChange(e);
     },
     value: props.inputValue
-  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-    to: "/favorites"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "FAVORITES")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    onClick: props.handleLogout
-  }, "LOGOUT")) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+  }))) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/users/register"
   }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "REGISTER")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/users/login"
@@ -47709,6 +47710,7 @@ function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(MovieContainer).call(this, props));
     _this.handleClick = _this.handleClick.bind(_assertThisInitialized(_this));
+    _this.checkFavs = _this.checkFavs.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -47718,11 +47720,22 @@ function (_React$Component) {
       this.props.sendFav(movie);
     }
   }, {
+    key: "checkFavs",
+    value: function checkFavs(movie) {
+      var bool = false;
+      this.props.favs.map(function (fav) {
+        if (movie.Title === fav.Title) bool = true;
+      });
+      return bool;
+    }
+  }, {
     key: "render",
     value: function render() {
       return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Movie__WEBPACK_IMPORTED_MODULE_2__["default"], {
         movie: this.props.movie,
-        handleClick: this.handleClick
+        handleClick: this.handleClick,
+        favs: this.props.favs,
+        checkFavs: this.checkFavs
       });
     }
   }]);
@@ -47732,10 +47745,12 @@ function (_React$Component) {
 
 var mapStateToProps = function mapStateToProps(_ref) {
   var selectedMovie = _ref.selectedMovie,
-      user = _ref.user;
+      user = _ref.user,
+      favs = _ref.favs;
   return {
     movie: selectedMovie,
-    user: user
+    user: user,
+    favs: favs
   };
 };
 

@@ -10,18 +10,18 @@ const Search = props => {
       {props.user.username ? (
         <div>
           <p>Hello {props.user.username}!</p>
+          <Link to="/favorites">
+            <button>FAVORITES</button>
+          </Link>
+          <button onClick={props.handleLogout}>LOGOUT</button>
           <form onSubmit={props.handleSubmit}>
-            <button type="submit">Search</button>
+            <button type="submit">SEARCH</button>
             <input
               placeholder="Enter movie or show name"
               onChange={e => props.handleChange(e)}
               value={props.inputValue}
             />
           </form>
-          <Link to="/favorites">
-            <button>FAVORITES</button>
-          </Link>
-          <button onClick={props.handleLogout}>LOGOUT</button>
         </div>
       ) : (
         <div>
