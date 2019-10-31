@@ -4,7 +4,8 @@ import {
   EMPTY_MOVIES,
   RECEIVE_USER,
   EMPTY_USER,
-  RECEIVE_FAVS
+  RECEIVE_FAVS,
+  DELETE_FAV
 } from "./actions";
 
 const initialState = {
@@ -32,10 +33,13 @@ export function rootReducer(state = initialState, action) {
       return { ...state, user: {} };
     }
     case RECEIVE_FAVS: {
-      console.log(action);
       if (!Array.isArray(action.favs))
         return { ...state, favs: [...state.favs, action.favs] };
       return { ...state, favs: action.favs };
+    }
+    case DELETE_FAV: {
+      let noFav = state.favs.filter(movie => movie.imdbID !== action.favID);
+      return { ...state, favs: noFav };
     }
     default:
       return state;

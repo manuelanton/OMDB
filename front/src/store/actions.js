@@ -6,6 +6,7 @@ export const EMPTY_MOVIES = "EMPTY_MOVIES";
 export const RECEIVE_USER = "RECEIVE_USER";
 export const EMPTY_USER = "EMPTY_USER";
 export const RECEIVE_FAVS = "RECEIVE_FAVS";
+export const DELETE_FAV = "DELETE_FAV";
 
 const receiveMovies = movies => ({
   type: RECEIVE_MOVIES,
@@ -24,6 +25,11 @@ export const receiveUser = user => ({
 export const receiveFavs = favs => ({
   type: RECEIVE_FAVS,
   favs
+});
+
+export const deleteFav = favID => ({
+  type: DELETE_FAV,
+  favID
 });
 
 export const emptyMovies = () => {
@@ -61,4 +67,10 @@ export const sendFav = movie => dispatch => {
     .post("/api/favs", movie)
     .then(res => res.data)
     .then(favs => dispatch(receiveFavs(favs)));
+};
+export const destroyFav = movieID => dispatch => {
+  axios.get(`/api/favs/delete/${movieID}`).then(favId => {
+    console.log(favId);
+    dispatch(deleteFav(favId.data.imdbID));
+  });
 };

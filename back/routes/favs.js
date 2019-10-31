@@ -11,6 +11,13 @@ router.post("/", (req, res) => {
     .catch(err => console.log(err));
 });
 
+router.get("/delete/:imdbID", (req, res) => {
+  Favorite.findOne({ where: { imdbID: req.params.imdbID } }).then(found => {
+    res.send(found);
+    found.destroy();
+  });
+});
+
 router.get("/", (req, res) => {
   if (req.user) {
     Favorite.findAllFromUser(req.user.id).then(favs => {

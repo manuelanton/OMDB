@@ -1,17 +1,22 @@
 import React from "react";
 import { connect } from "react-redux";
 import Movie from "../components/Movie";
-import { sendFav } from "../store/actions";
+import { sendFav, destroyFav } from "../store/actions";
 
 class MovieContainer extends React.Component {
   constructor(props) {
     super(props);
     this.handleClick = this.handleClick.bind(this);
     this.checkFavs = this.checkFavs.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   handleClick(movie) {
     this.props.sendFav(movie);
+  }
+
+  handleDelete(movie) {
+    this.props.destroyFav(movie.imdbID);
   }
 
   checkFavs(movie) {
@@ -29,6 +34,7 @@ class MovieContainer extends React.Component {
         handleClick={this.handleClick}
         favs={this.props.favs}
         checkFavs={this.checkFavs}
+        handleDelete={this.handleDelete}
       />
     );
   }
@@ -41,7 +47,8 @@ const mapStateToProps = ({ selectedMovie, user, favs }) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  sendFav: movie => dispatch(sendFav(movie))
+  sendFav: movie => dispatch(sendFav(movie)),
+  destroyFav: movieID => dispatch(destroyFav(movieID))
 });
 
 export default connect(

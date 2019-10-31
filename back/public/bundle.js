@@ -47437,7 +47437,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = (function (_ref) {
   var movie = _ref.movie,
       handleClick = _ref.handleClick,
-      checkFavs = _ref.checkFavs;
+      checkFavs = _ref.checkFavs,
+      handleDelete = _ref.handleDelete;
   return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     key: movie.imdbID,
     className: "col-xs-4"
@@ -47445,7 +47446,11 @@ __webpack_require__.r(__webpack_exports__);
     src: movie.Poster
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "caption"
-  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Title: ", movie.Title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Type: ", movie.Type), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Plot: ", movie.Plot), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, " Year: ", movie.Year), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), checkFavs(movie) ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "REMOVE FROM FAVORITES") : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h5", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Title: ", movie.Title), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Type: ", movie.Type), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Plot: ", movie.Plot), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, " Year: ", movie.Year), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), checkFavs(movie) ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    onClick: function onClick() {
+      return handleDelete(movie);
+    }
+  }, "REMOVE FROM FAVORITES") : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     onClick: function onClick() {
       return handleClick(movie);
     }
@@ -47711,6 +47716,7 @@ function (_React$Component) {
     _this = _possibleConstructorReturn(this, _getPrototypeOf(MovieContainer).call(this, props));
     _this.handleClick = _this.handleClick.bind(_assertThisInitialized(_this));
     _this.checkFavs = _this.checkFavs.bind(_assertThisInitialized(_this));
+    _this.handleDelete = _this.handleDelete.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -47718,6 +47724,11 @@ function (_React$Component) {
     key: "handleClick",
     value: function handleClick(movie) {
       this.props.sendFav(movie);
+    }
+  }, {
+    key: "handleDelete",
+    value: function handleDelete(movie) {
+      this.props.destroyFav(movie.imdbID);
     }
   }, {
     key: "checkFavs",
@@ -47735,7 +47746,8 @@ function (_React$Component) {
         movie: this.props.movie,
         handleClick: this.handleClick,
         favs: this.props.favs,
-        checkFavs: this.checkFavs
+        checkFavs: this.checkFavs,
+        handleDelete: this.handleDelete
       });
     }
   }]);
@@ -47758,6 +47770,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     sendFav: function sendFav(movie) {
       return dispatch(Object(_store_actions__WEBPACK_IMPORTED_MODULE_3__["sendFav"])(movie));
+    },
+    destroyFav: function destroyFav(movieID) {
+      return dispatch(Object(_store_actions__WEBPACK_IMPORTED_MODULE_3__["destroyFav"])(movieID));
     }
   };
 };
@@ -48064,7 +48079,7 @@ react_dom__WEBPACK_IMPORTED_MODULE_3___default.a.render(react__WEBPACK_IMPORTED_
 /*!******************************!*\
   !*** ./src/store/actions.js ***!
   \******************************/
-/*! exports provided: RECEIVE_MOVIES, RECEIVE_MOVIE, EMPTY_MOVIES, RECEIVE_USER, EMPTY_USER, RECEIVE_FAVS, receiveUser, receiveFavs, emptyMovies, emptyUser, fetchMovies, fetchMovie, fetchUser, fetchFavs, sendFav */
+/*! exports provided: RECEIVE_MOVIES, RECEIVE_MOVIE, EMPTY_MOVIES, RECEIVE_USER, EMPTY_USER, RECEIVE_FAVS, DELETE_FAV, receiveUser, receiveFavs, deleteFav, emptyMovies, emptyUser, fetchMovies, fetchMovie, fetchUser, fetchFavs, sendFav, destroyFav */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -48075,8 +48090,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_USER", function() { return RECEIVE_USER; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EMPTY_USER", function() { return EMPTY_USER; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_FAVS", function() { return RECEIVE_FAVS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DELETE_FAV", function() { return DELETE_FAV; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveUser", function() { return receiveUser; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveFavs", function() { return receiveFavs; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteFav", function() { return deleteFav; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "emptyMovies", function() { return emptyMovies; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "emptyUser", function() { return emptyUser; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchMovies", function() { return fetchMovies; });
@@ -48084,6 +48101,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchUser", function() { return fetchUser; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchFavs", function() { return fetchFavs; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "sendFav", function() { return sendFav; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "destroyFav", function() { return destroyFav; });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 
@@ -48093,6 +48111,7 @@ var EMPTY_MOVIES = "EMPTY_MOVIES";
 var RECEIVE_USER = "RECEIVE_USER";
 var EMPTY_USER = "EMPTY_USER";
 var RECEIVE_FAVS = "RECEIVE_FAVS";
+var DELETE_FAV = "DELETE_FAV";
 
 var receiveMovies = function receiveMovies(movies) {
   return {
@@ -48118,6 +48137,12 @@ var receiveFavs = function receiveFavs(favs) {
   return {
     type: RECEIVE_FAVS,
     favs: favs
+  };
+};
+var deleteFav = function deleteFav(favID) {
+  return {
+    type: DELETE_FAV,
+    favID: favID
   };
 };
 var emptyMovies = function emptyMovies() {
@@ -48172,6 +48197,14 @@ var sendFav = function sendFav(movie) {
       return res.data;
     }).then(function (favs) {
       return dispatch(receiveFavs(favs));
+    });
+  };
+};
+var destroyFav = function destroyFav(movieID) {
+  return function (dispatch) {
+    axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/favs/delete/".concat(movieID)).then(function (favId) {
+      console.log(favId);
+      dispatch(deleteFav(favId.data.imdbID));
     });
   };
 };
@@ -48275,12 +48308,21 @@ function rootReducer() {
 
     case _actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_FAVS"]:
       {
-        console.log(action);
         if (!Array.isArray(action.favs)) return _objectSpread({}, state, {
           favs: [].concat(_toConsumableArray(state.favs), [action.favs])
         });
         return _objectSpread({}, state, {
           favs: action.favs
+        });
+      }
+
+    case _actions__WEBPACK_IMPORTED_MODULE_0__["DELETE_FAV"]:
+      {
+        var noFav = state.favs.filter(function (movie) {
+          return movie.imdbID !== action.favID;
+        });
+        return _objectSpread({}, state, {
+          favs: noFav
         });
       }
 
