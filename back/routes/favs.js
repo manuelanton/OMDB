@@ -13,9 +13,7 @@ router.post("/", (req, res) => {
 
 router.get("/", (req, res) => {
   if (req.user) {
-    console.log("Entré a la ruta del back.");
     Favorite.findAllFromUser(req.user.id).then(favs => {
-      console.log(favs);
       res.send(favs);
     });
   } else {

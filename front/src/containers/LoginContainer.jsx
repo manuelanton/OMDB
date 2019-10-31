@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
 import Login from "../components/Form";
-import { receiveUser } from "../store/actions";
+import { receiveUser, fetchFavs } from "../store/actions";
 import { connect } from "react-redux";
 
 class LoginContainer extends React.Component {
@@ -37,7 +37,8 @@ class LoginContainer extends React.Component {
         .then(user => {
           this.props.receiveUser(user);
           this.props.history.push("/");
-        });
+        })
+        .then(() => this.props.fetchFavs());
     }
   }
 
@@ -53,7 +54,8 @@ class LoginContainer extends React.Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  receiveUser: user => dispatch(receiveUser(user))
+  receiveUser: user => dispatch(receiveUser(user)),
+  fetchFavs: () => dispatch(fetchFavs())
 });
 
 export default connect(

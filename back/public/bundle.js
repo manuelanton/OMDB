@@ -47612,6 +47612,8 @@ function (_React$Component) {
           _this2.props.receiveUser(user);
 
           _this2.props.history.push("/");
+        }).then(function () {
+          return _this2.props.fetchFavs();
         });
       }
     }
@@ -47633,6 +47635,9 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     receiveUser: function receiveUser(user) {
       return dispatch(Object(_store_actions__WEBPACK_IMPORTED_MODULE_3__["receiveUser"])(user));
+    },
+    fetchFavs: function fetchFavs() {
+      return dispatch(Object(_store_actions__WEBPACK_IMPORTED_MODULE_3__["fetchFavs"])());
     }
   };
 };
