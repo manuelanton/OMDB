@@ -30,7 +30,7 @@ export function rootReducer(state = initialState, action) {
       return { ...state, user: action.user };
     }
     case EMPTY_USER: {
-      return { ...state, user: {} };
+      return { ...state, user: {}, favs: [] };
     }
     case RECEIVE_FAVS: {
       if (!Array.isArray(action.favs))

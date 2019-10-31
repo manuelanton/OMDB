@@ -48302,7 +48302,8 @@ function rootReducer() {
     case _actions__WEBPACK_IMPORTED_MODULE_0__["EMPTY_USER"]:
       {
         return _objectSpread({}, state, {
-          user: {}
+          user: {},
+          favs: []
         });
       }
 
