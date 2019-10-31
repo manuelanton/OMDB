@@ -56,3 +56,9 @@ export const fetchFavs = userID => dispatch => {
     .then(res => res.data)
     .then(favs => dispatch(receiveFavs(favs)));
 };
+export const sendFav = movie => dispatch => {
+  axios
+    .post("/api/favs", movie)
+    .then(res => res.data)
+    .then(favs => dispatch(receiveFavs(favs)));
+};

@@ -1,12 +1,10 @@
 import React from "react";
-import axios from "axios";
 
-export default ({ movie }) => (
+export default ({ movie, handleClick }) => (
   <div key={movie.imdbID} className="col-xs-4">
     <br />
 
     <img src={movie.Poster} />
-
     <div className="caption">
       <h5>
         <span>Title: {movie.Title}</span>
@@ -18,12 +16,8 @@ export default ({ movie }) => (
         <span> Year: {movie.Year}</span>
         <br />
         <br />
-        <button onClick={e => movieSender(movie)}>ADD TO FAVORITES</button>
+        <button onClick={() => handleClick(movie)}>ADD TO FAVORITES</button>
       </h5>
     </div>
   </div>
 );
-
-const movieSender = movie => {
-  axios.post("/api/favs", { movie });
-};

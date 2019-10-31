@@ -21,7 +21,6 @@ class App extends React.Component {
   componentDidMount() {
     store.dispatch(fetchUser());
     this.props.user.username && store.dispatch(fetchFavs());
-    console.log("Holis, me monté");
   }
 
   render() {

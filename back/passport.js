@@ -6,8 +6,8 @@ const Favorite = require("./models/Favorite");
 passport.use(
   new LocalStrategy(function(username, password, done) {
     User.findOne({
-      where: { username: username },
-      include: { model: Favorite, as: "favorite" }
+      where: { username: username }
+      // include: { model: Favorite, as: "favorite" }
     })
       .then(user => {
         if (!user) {

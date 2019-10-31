@@ -7,9 +7,8 @@ const passport = require("../passport");
 router.post("/", (req, res) => {
   User.findByPk(req.user.id)
     .then(user => {
-      user.addToFavs(req.body.movie);
+      user.addToFavs(req.body).then(fav => res.send(fav));
     })
-    .then(fav => res.send(fav))
     .catch(err => console.log(err));
 });
 

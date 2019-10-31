@@ -32,6 +32,9 @@ export function rootReducer(state = initialState, action) {
       return { ...state, user: {} };
     }
     case RECEIVE_FAVS: {
+      console.log(action);
+      if (!Array.isArray(action.favs))
+        return { ...state, favs: [...state.favs, action.favs] };
       return { ...state, favs: action.favs };
     }
     default:
