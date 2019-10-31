@@ -1,8 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const User = require("../models/User");
-const Favorite = require("../models/User");
-const passport = require("../passport");
+const Favorite = require("../models/Favorite");
 
 router.post("/", (req, res) => {
   User.findByPk(req.user.id)
@@ -13,9 +12,15 @@ router.post("/", (req, res) => {
 });
 
 router.get("/", (req, res) => {
-  Favorite.findAll({ where: { userId: req.user.id } }).then(favs =>
-    res.send(favs)
-  );
+  if (req.user) {
+    console.log("Entré a la ruta del back.");
+    Favorite.findAllFromUser(req.user.id).then(favs => {
+      console.log(favs);
+      res.send(favs);
+    });
+  } else {
+    res.send("LOG IN FIRST");
+  }
 });
 
 module.exports = router;

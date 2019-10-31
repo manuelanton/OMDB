@@ -50,7 +50,7 @@ export const fetchUser = () => dispatch => {
     .then(res => res.data)
     .then(user => dispatch(receiveUser(user)));
 };
-export const fetchFavs = userID => dispatch => {
+export const fetchFavs = () => dispatch => {
   axios
     .get("/api/favs")
     .then(res => res.data)

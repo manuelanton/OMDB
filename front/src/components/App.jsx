@@ -20,7 +20,9 @@ class App extends React.Component {
   }
   componentDidMount() {
     store.dispatch(fetchUser());
-    this.props.user.username && store.dispatch(fetchFavs());
+    if (this.props.user) {
+      store.dispatch(fetchFavs());
+    }
   }
 
   render() {

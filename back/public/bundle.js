@@ -47333,7 +47333,10 @@ function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       _store_index__WEBPACK_IMPORTED_MODULE_7__["default"].dispatch(Object(_store_actions__WEBPACK_IMPORTED_MODULE_6__["fetchUser"])());
-      this.props.user.username && _store_index__WEBPACK_IMPORTED_MODULE_7__["default"].dispatch(Object(_store_actions__WEBPACK_IMPORTED_MODULE_6__["fetchFavs"])());
+
+      if (this.props.user) {
+        _store_index__WEBPACK_IMPORTED_MODULE_7__["default"].dispatch(Object(_store_actions__WEBPACK_IMPORTED_MODULE_6__["fetchFavs"])());
+      }
     }
   }, {
     key: "render",
@@ -48120,7 +48123,7 @@ var fetchUser = function fetchUser() {
     });
   };
 };
-var fetchFavs = function fetchFavs(userID) {
+var fetchFavs = function fetchFavs() {
   return function (dispatch) {
     axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/favs").then(function (res) {
       return res.data;

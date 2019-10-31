@@ -23,4 +23,8 @@ Favorite.init(
   { sequelize: db, modelName: "favorite" }
 );
 
+Favorite.findAllFromUser = function(id) {
+  return Favorite.findAll({ where: { userId: id } });
+};
+
 module.exports = Favorite;
