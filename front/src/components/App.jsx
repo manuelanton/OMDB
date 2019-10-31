@@ -10,6 +10,7 @@ import RegisterContainer from "../containers/RegisterContainer";
 import LoginContainer from "../containers/LoginContainer";
 import { fetchUser, fetchFavs } from "../store/actions";
 import { connect } from "react-redux";
+import Movies from "../components/Movies";
 
 class App extends React.Component {
   constructor(props) {
@@ -37,6 +38,11 @@ class App extends React.Component {
           />
           <Route exact path="/users/register" component={RegisterContainer} />
           <Route exact path="/users/login" component={LoginContainer} />
+          <Route
+            exact
+            path="/favorites"
+            render={() => <Movies movies={this.props.favs} />}
+          />
           <Route exact path="/" component={MoviesContainer} />
         </Switch>
       </div>

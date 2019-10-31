@@ -4,20 +4,23 @@ import { Link } from "react-router-dom";
 const Search = props => {
   return (
     <div>
-      <form onSubmit={props.handleSubmit}>
-        <button type="submit">Search</button>
-        <input
-          placeholder="Enter movie or show name"
-          onChange={e => props.handleChange(e)}
-          value={props.inputValue}
-        />
-      </form>
       <Link to="/">
         <button onClick={props.emptyMovies}>HOME</button>
       </Link>
       {props.user.username ? (
         <div>
           <p>Hello {props.user.username}!</p>
+          <form onSubmit={props.handleSubmit}>
+            <button type="submit">Search</button>
+            <input
+              placeholder="Enter movie or show name"
+              onChange={e => props.handleChange(e)}
+              value={props.inputValue}
+            />
+          </form>
+          <Link to="/favorites">
+            <button>FAVORITES</button>
+          </Link>
           <button onClick={props.handleLogout}>LOGOUT</button>
         </div>
       ) : (
